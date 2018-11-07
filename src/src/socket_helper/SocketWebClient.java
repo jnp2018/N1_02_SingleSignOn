@@ -77,7 +77,7 @@ public class SocketWebClient {
         try (BufferedReader br = new BufferedReader(new FileReader(this.fileCookie))) {
             return br.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("client cookie not found.");
         }
         return "";
     }

@@ -51,11 +51,7 @@ public class ClientView extends ConsoleView {
                 } else {
                     client.view.showError("Session centralize invalid. Trying to logining to site centralize.");
                     user = enterCredentials(client);
-                    if (client.checkCredential(user) && client.saveLoginSession()) {
-                        client.view.showMessage("Login site centralize successfully.");
-                        
-                        client.view.showInfo("Trying to logining to site local.");
-                        client.changeServer("localhost", this.serverPort);
+                    if (client.checkCredential(user)) {
                         doSaveLoginSession(client);
                     } else {
                         client.view.showError("Login error with credentials : "+ user.getUsername() +"@"+ user.getPassword());
@@ -64,6 +60,15 @@ public class ClientView extends ConsoleView {
             } else {
                 client.view.showInfo("Trying to logining to site local.");
                 user = enterCredentials(client);
+                if (client.checkCredential(user) && client.saveLoginSession()) {
+                    client.view.showMessage("Login site local successfully.");
+
+                    client.view.showInfo("Trying to logining to site local.");
+                    client.changeServer("localhost", this.serverPort);
+                    doSaveLoginSession(client);
+                } else {
+                    client.view.showError("Login error with credentials : "+ user.getUsername() +"@"+ user.getPassword());
+                }
             }
         }
     }

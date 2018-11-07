@@ -12,5 +12,6 @@ package app;
 public class Constant {
     public static int serverAPort = 8840;
     public static int serverBPort = 8841;
+    public static int serverCPort = 8842;
     public static int serverPublicPort = 8838;
 }
